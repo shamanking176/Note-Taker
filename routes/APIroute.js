@@ -6,7 +6,7 @@ const { v4: uuidv4 } = require('uuid');
 
 router.get('/notes', (req, res) => {
 let data = fs.readFileSync(path.join(__dirname, '../db/db.json'), 'utf8');
-res.sendFile(JSON.parse(data));
+res.json(JSON.parse(data));
 })
 
 router.post('/notes', (req, res) => {
