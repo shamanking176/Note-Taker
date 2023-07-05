@@ -2,7 +2,7 @@ const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
-const { readAndAppend, readFromFile } = require('../helpers/fsUtils');
+// const { readAndAppend, readFromFile } = require('../helpers/fsUtils');
 
 router.get('/notes', (req, res) => {
 let data = fs.readFileSync(path.join(__dirname, '../db/db.json'), 'utf8');
@@ -10,7 +10,9 @@ res.sendFile(JSON.parse(data));
 })
 
 router.post('/notes', (req, res) => {
-let data = fs.readFileSync(path.join(__dirname, '../db/db.json'), 'utf8');
+ console.log("hello");
+let data = fs.writeFileSync(path.join(__dirname, '../db/db.json'), 'utf8');
+console.log(data);
 let notes = JSON.parse(data);
 const {title, text} = req.body;
 const newNote = {title, text, id: uuidv4()};
