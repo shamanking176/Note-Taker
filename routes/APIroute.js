@@ -17,12 +17,12 @@ let data = JSON.parse(
     })
   );
 console.log(data);
-let notes = JSON.parse(data);
+
 const {title, text} = req.body;
 const newNote = {title, text, id: uuidv4()};
-notes.push(newNote);
-fs.writeFileSync("db/db.json", JSON.stringify(readFile));
-res.json(newNote);
+data.push(newNote);
+fs.writeFileSync("db/db.json", JSON.stringify(data));
+res.json(data);
 })
 
 // router.delete('/notes/:id', (req, res) => {
