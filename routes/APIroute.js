@@ -11,13 +11,17 @@ res.json(JSON.parse(data));
 
 router.post('/notes', (req, res) => {
  console.log("hello");
-let data = fs.writeFileSync(path.join(__dirname, '../db/db.json'), 'utf8');
+let data = JSON.parse(
+    fs.readFileSync("db/db.json", {
+      encoding: "utf-8",
+    })
+  );
 console.log(data);
 let notes = JSON.parse(data);
 const {title, text} = req.body;
 const newNote = {title, text, id: uuidv4()};
 notes.push(newNote);
-fs.readAndAppend('../db/db.json', JSON.stringify(notes));
+fs.writeFileSync("db/db.json", JSON.stringify(readFile));
 res.json(newNote);
 })
 
